@@ -20,7 +20,7 @@ const TaskList: FC<TaskListProps> = ({
     isFetching,
     tasks,
 }) => {
-    const handleDeleteTask = async id => {
+    const handleDeleteTask = async (id: number) => {
         try {
             setIsFetching(true)
             await deleteTask(id)
@@ -32,7 +32,7 @@ const TaskList: FC<TaskListProps> = ({
         }
     }
 
-    const handleChangeDataTask = async (id, titleTask, isDone) => {
+    const handleChangeDataTask = async (id: number, titleTask: string, isDone: boolean) => {
         try {
             setIsFetching(true)
             await changeDataTask(id, titleTask, isDone)

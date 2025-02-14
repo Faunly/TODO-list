@@ -17,14 +17,14 @@ type TaskItemProps = {
 const TaskItem: FC<TaskItemProps> = ({ id, titleTask, isDone, onChangeData, onDelete }) => {
     const [isEdited, setIsEdited] = useState(false)
     const [curTitleTask, setCurTitleTask] = useState(titleTask)
-    const [prevTaskTitle, setPrevTaskTitle] = useState()
+    const [prevTaskTitle, setPrevTaskTitle] = useState('')
 
     const handleEdited = () => {
         setIsEdited(prevState => !prevState)
         setPrevTaskTitle(curTitleTask)
     }
 
-    const handleChange = newValue => {
+    const handleChange = (newValue: string) => {
         setCurTitleTask(newValue)
     }
 
