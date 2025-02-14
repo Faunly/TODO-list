@@ -1,59 +1,59 @@
-export async function fetchTasksByCategory(filter) {
+export const fetchTasksByCategory = async (filter: string) => {
     try {
-        const response = await fetch(`https://easydev.club/api/v1/todos?filter=${filter}`);
-        return await response.json();
+        const response = await fetch(`https://easydev.club/api/v1/todos?filter=${filter}`)
+        return await response.json()
     } catch {
-        throw new Error();
+        throw new Error()
     }
 }
 
-export async function addTask(filter) {
+export const addTask = async (filter: string) => {
     try {
-        const response = await fetch("https://easydev.club/api/v1/todos", {
-            method: "POST",
+        const response = await fetch('https://easydev.club/api/v1/todos', {
+            method: 'POST',
             body: JSON.stringify({
-                "isDone": false,
-                "title": filter
+                isDone: false,
+                title: filter,
             }),
             headers: {
-                'accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-        return await response.json();
+                accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+        return await response.json()
     } catch {
-        throw new Error();
+        throw new Error()
     }
 }
 
-export async function changeDataTask(id, filter, isDone) {
+export const changeDataTask = async (id: number, filter: string, isDone: boolean) => {
     try {
         const response = await fetch(`https://easydev.club/api/v1/todos/${id}`, {
-            method: "PUT",
+            method: 'PUT',
             body: JSON.stringify({
-                "isDone": isDone,
-                "title": filter
+                isDone: isDone,
+                title: filter,
             }),
             headers: {
-                'accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-        return await response.json();
+                accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+        return await response.json()
     } catch {
-        throw new Error();
+        throw new Error()
     }
 }
 
-export async function deleteTask(id) {
+export const deleteTask = async (id: number) => {
     try {
         await fetch(`https://easydev.club/api/v1/todos/${id}`, {
-            method: "DELETE",
+            method: 'DELETE',
             headers: {
-                'accept': 'application/json',
-            }
-        });
+                accept: 'application/json',
+            },
+        })
     } catch {
-        throw new Error();
+        throw new Error()
     }
 }
