@@ -6,8 +6,8 @@ type AddTaskProps = {
     isFetching: boolean
     setIsFetching: (value: boolean) => void
     setValueInput: (value: string) => void
-    fetchTasksByCategories: (filter: string) => void
-    filter: string
+    fetchTasksByCategories: () => void
+    // filter: string
     valueInputTask: string
 }
 
@@ -16,7 +16,7 @@ const AddTask: FC<AddTaskProps> = ({
     setIsFetching,
     setValueInput,
     fetchTasksByCategories,
-    filter,
+    // filter,
     valueInputTask,
 }) => {
     const [error, setError] = useState('')
@@ -30,7 +30,7 @@ const AddTask: FC<AddTaskProps> = ({
         } finally {
             setIsFetching(false)
             setValueInput('')
-            fetchTasksByCategories(filter)
+            fetchTasksByCategories()
         }
     }
 

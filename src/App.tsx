@@ -47,8 +47,7 @@ const App = () => {
                 isFetching={isFetching}
                 setIsFetching={setIsFetching}
                 setValueInput={setValueInput}
-                filter={filter}
-                fetchTasksByCategories={fetchTasksByCategories}
+                fetchTasksByCategories={() => fetchTasksByCategories(filter)}
             />
             <CategoriesList
                 isFetching={isFetching}
@@ -59,10 +58,9 @@ const App = () => {
             <TaskList
                 isFetching={isFetching}
                 tasks={tasks}
-                fetchTasksByCategories={fetchTasksByCategories}
+                fetchTasksByCategories={() => fetchTasksByCategories(filter)}
                 setIsFetching={setIsFetching}
                 setError={setError}
-                filter={filter}
             />
             {isFetching && <h3>Fetching tasks...</h3>}
         </div>
