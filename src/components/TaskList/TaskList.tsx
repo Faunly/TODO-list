@@ -1,32 +1,49 @@
 import TaskItem from '../TaskItem/TaskItem.js'
 import { changeDataTask, deleteTask } from '../../http.js'
+import { FC } from 'react'
+import { TasksType } from '../../types/Tasks.js'
 
-export default function TaskList({ setIsFetching, setError, fetchTasksByCategories, filter, isFetching, tasks }) {
-    async function handleDeleteTask(id) {
+type TaskListProps = {
+    setIsFetching: (value: boolean) => void
+    tasks: TasksType[]
+    setError: (value: string) => void
+    fetchTasksByCategories: (filter: string) => void
+    filter: string
+    isFetching: boolean
+}
+
+const TaskList: FC<TaskListProps> = ({
+    setIsFetching,
+    setError,
+    fetchTasksByCategories,
+    filter,
+    isFetching,
+    tasks,
+}) => {
+    const handleDeleteTask = async id => {
         try {
             setIsFetching(true)
             await deleteTask(id)
         } catch (error) {
-            setError(error)
+            setError(error as string)
         } finally {
             setIsFetching(false)
-            await fetchTasksByCategories(filter)
+            fetchTasksByCategories(filter)
         }
     }
 
-    async function handleChangeDataTask(id, titleTask, isDone) {
+    const handleChangeDataTask = async (id, titleTask, isDone) => {
         try {
             setIsFetching(true)
             await changeDataTask(id, titleTask, isDone)
         } catch (error) {
-            setError(error)
+            setError(error as string)
         } finally {
             setIsFetching(false)
-            await fetchTasksByCategories(filter)
+            fetchTasksByCategories(filter)
         }
     }
 
-    console.log(tasks)
     return (
         !isFetching &&
         tasks.map(task => (
@@ -41,3 +58,5 @@ export default function TaskList({ setIsFetching, setError, fetchTasksByCategori
         ))
     )
 }
+
+export default TaskList

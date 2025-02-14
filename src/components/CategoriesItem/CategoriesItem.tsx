@@ -1,17 +1,23 @@
-import classes from "./CategoriesItem.module.css"
+import { FC } from 'react'
+import classes from './CategoriesItem.module.css'
 
-// eslint-disable-next-line react/prop-types
-export default function CategoriesItem({curFilter, meta, amount, onChangeFilter}) {
+type CategoriesItemProps = {
+    curFilter: string
+    meta: { title: string; filterTitle: string }
+    onChangeFilter: (filterTitle: string) => void
+    amount: number
+}
 
+const CategoriesItem: FC<CategoriesItemProps> = ({ curFilter, meta, amount, onChangeFilter }) => {
     return (
-        // eslint-disable-next-line react/prop-types
-        <li className={`${classes.categoriesItem} ${curFilter === meta.filterTitle && classes.selected}`}
+        <li
+            className={`${classes.categoriesItem} ${curFilter === meta.filterTitle && classes.selected}`}
             onClick={() => {
-                // eslint-disable-next-line react/prop-types
                 onChangeFilter(meta.filterTitle)
             }}>
-            {/* eslint-disable-next-line react/prop-types */}
             {`${meta.title} (${amount})`}
         </li>
-    );
+    )
 }
+
+export default CategoriesItem

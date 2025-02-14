@@ -5,12 +5,14 @@ import classes from './App.module.css'
 import AddTask from './components/AddTask/AddTask.js'
 import CategoriesList from './components/CategoriesList/CategoriesList.js'
 import TaskList from './components/TaskList/TaskList.tsx'
+import { TasksType } from './types/Tasks.ts'
+import { CategoriesType } from './types/Categories'
 
 const App = () => {
-    const [tasks, setTasks] = useState([])
-    const [categories, setCategories] = useState([''])
+    const [tasks, setTasks] = useState<TasksType[]>([])
+    const [categories, setCategories] = useState<CategoriesType>()
     const [error, setError] = useState('')
-    const [isFetching, setIsFetching] = useState(false)
+    const [isFetching, setIsFetching] = useState(true)
     const [valueInput, setValueInput] = useState('')
     const [filter, setFilter] = useState('all')
 
@@ -18,7 +20,7 @@ const App = () => {
         fetchTasksByCategories('all')
     }, [])
 
-    async function fetchTasksByCategories(filter: string) {
+    const fetchTasksByCategories = async (filter: string) => {
         setIsFetching(true)
         try {
             const todos = await fetchTasksByCategory(filter)
@@ -31,6 +33,8 @@ const App = () => {
             setIsFetching(false)
         }
     }
+
+    // console.log(categories)
 
     if (error) {
         console.log('Error fetch!!!')

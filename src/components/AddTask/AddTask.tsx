@@ -51,7 +51,7 @@ const AddTask: FC<AddTaskProps> = ({
         }
     }
 
-    function handleChangeInput(event: ChangeEvent<HTMLInputElement>) {
+    const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
         setValueInput(event.target.value)
     }
 

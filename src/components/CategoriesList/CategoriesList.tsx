@@ -1,22 +1,24 @@
 import classes from './CategoriesList.module.css'
-import CategoriesItem from '../CategoriesItem/CategoriesItem.js'
 import { FC } from 'react'
+import CategoriesItem from '../CategoriesItem/CategoriesItem'
+import { CategoriesType } from '../../types/Categories'
 
 type CategoriesListProps = {
     isFetching: boolean
-    categories: string[]
     filter: string
+    categories?: CategoriesType
     fetchTasksByCategories: (filter: string) => void
 }
 
 const CategoriesList: FC<CategoriesListProps> = ({ isFetching, categories, filter, fetchTasksByCategories }) => {
     return (
-        !isFetching && (
+        !isFetching &&
+        categories && (
             <ul className={classes.categoriesList}>
                 <CategoriesItem
                     curFilter={filter}
                     meta={{ title: 'Все', filterTitle: 'all' }}
-                    amount={Object.values(categories)[0]}
+                    amount={categories && Object.values(categories)[0]}
                     onChangeFilter={fetchTasksByCategories}
                 />
                 <CategoriesItem
