@@ -13,7 +13,6 @@ const App = () => {
     const [categories, setCategories] = useState<CategoriesType>()
     const [error, setError] = useState('')
     const [isFetching, setIsFetching] = useState(true)
-    const [valueInput, setValueInput] = useState('')
     const [filter, setFilter] = useState('all')
 
     useEffect(() => {
@@ -34,8 +33,6 @@ const App = () => {
         }
     }
 
-    // console.log(categories)
-
     if (error) {
         console.log('Error fetch!!!')
     }
@@ -43,10 +40,8 @@ const App = () => {
     return (
         <div className={classes.container}>
             <AddTask
-                valueInputTask={valueInput}
                 isFetching={isFetching}
                 setIsFetching={setIsFetching}
-                setValueInput={setValueInput}
                 fetchTasksByCategories={() => fetchTasksByCategories(filter)}
             />
             <CategoriesList

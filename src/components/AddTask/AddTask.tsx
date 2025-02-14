@@ -5,26 +5,17 @@ import { addTask } from '../../http.js'
 type AddTaskProps = {
     isFetching: boolean
     setIsFetching: (value: boolean) => void
-    setValueInput: (value: string) => void
     fetchTasksByCategories: () => void
-    // filter: string
-    valueInputTask: string
 }
 
-const AddTask: FC<AddTaskProps> = ({
-    isFetching,
-    setIsFetching,
-    setValueInput,
-    fetchTasksByCategories,
-    // filter,
-    valueInputTask,
-}) => {
+const AddTask: FC<AddTaskProps> = ({ isFetching, setIsFetching, fetchTasksByCategories }) => {
+    const [valueInput, setValueInput] = useState('')
     const [error, setError] = useState('')
 
     const handleAddTask = async () => {
         try {
             setIsFetching(true)
-            await addTask(valueInputTask)
+            await addTask(valueInput)
         } catch {
             setError('Ошибка создания задачи!')
         } finally {
@@ -35,7 +26,7 @@ const AddTask: FC<AddTaskProps> = ({
     }
 
     const validation = (): boolean => {
-        if (valueInputTask.length < 2) {
+        if (valueInput.length < 2) {
             setError('Ошибка валидации! Нельзя создать задачу с количеством символов меньше 2-х.')
             return true
         } else {
@@ -68,7 +59,7 @@ const AddTask: FC<AddTaskProps> = ({
                     type="text"
                     id="input-task"
                     placeholder="Task To Be Done..."
-                    value={valueInputTask}
+                    value={valueInput}
                     onChange={e => {
                         handleChangeInput(e)
                     }}

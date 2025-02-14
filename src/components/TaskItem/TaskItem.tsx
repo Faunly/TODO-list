@@ -37,8 +37,10 @@ const TaskItem: FC<TaskItemProps> = ({ id, titleTask, isDone, onChangeData, onDe
         <div className={classes.task}>
             <div className={classes.leftContainer}>
                 <div className={classes.round}>
-                    <input type="checkbox" id="checkbox" checked={isDone} />
-                    <label htmlFor="checkbox" onClick={() => onChangeData(id, titleTask, !isDone, 'check')}></label>
+                    <input type="checkbox" name="checkboxInput" defaultChecked={isDone} />
+                    <label
+                        htmlFor="checkboxInput"
+                        onClick={() => onChangeData(id, titleTask, !isDone, 'check')}></label>
                 </div>
                 {!isEdited ? (
                     <h3 className={isDone ? `${classes.checked}` : undefined}>{curTitleTask}</h3>
