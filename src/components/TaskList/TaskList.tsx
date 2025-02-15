@@ -7,19 +7,11 @@ type TaskListProps = {
     setIsFetching: (value: boolean) => void
     tasks: TasksType[]
     setError: (value: string) => void
-    fetchTasksByCategories: (filter: string) => void
-    filter: string
+    fetchTasksByCategories: () => void
     isFetching: boolean
 }
 
-const TaskList: FC<TaskListProps> = ({
-    setIsFetching,
-    setError,
-    fetchTasksByCategories,
-    filter,
-    isFetching,
-    tasks,
-}) => {
+const TaskList: FC<TaskListProps> = ({ setIsFetching, setError, fetchTasksByCategories, isFetching, tasks }) => {
     const handleDeleteTask = async (id: number) => {
         try {
             setIsFetching(true)
@@ -28,7 +20,7 @@ const TaskList: FC<TaskListProps> = ({
             setError(error as string)
         } finally {
             setIsFetching(false)
-            fetchTasksByCategories(filter)
+            fetchTasksByCategories()
         }
     }
 
@@ -40,7 +32,7 @@ const TaskList: FC<TaskListProps> = ({
             setError(error as string)
         } finally {
             setIsFetching(false)
-            fetchTasksByCategories(filter)
+            fetchTasksByCategories()
         }
     }
 

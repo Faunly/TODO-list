@@ -5,37 +5,28 @@ import { addTask } from '../../http.js'
 type AddTaskProps = {
     isFetching: boolean
     setIsFetching: (value: boolean) => void
-    setValueInput: (value: string) => void
-    fetchTasksByCategories: (filter: string) => void
-    filter: string
-    valueInputTask: string
+    fetchTasksByCategories: () => void
 }
 
-const AddTask: FC<AddTaskProps> = ({
-    isFetching,
-    setIsFetching,
-    setValueInput,
-    fetchTasksByCategories,
-    filter,
-    valueInputTask,
-}) => {
+const AddTask: FC<AddTaskProps> = ({ isFetching, setIsFetching, fetchTasksByCategories }) => {
+    const [todoTitle, setTodoTitle] = useState('')
     const [error, setError] = useState('')
 
     const handleAddTask = async () => {
         try {
             setIsFetching(true)
-            await addTask(valueInputTask)
+            await addTask(todoTitle)
         } catch {
             setError('Ошибка создания задачи!')
         } finally {
             setIsFetching(false)
-            setValueInput('')
-            fetchTasksByCategories(filter)
+            setTodoTitle('')
+            fetchTasksByCategories()
         }
     }
 
     const validation = (): boolean => {
-        if (valueInputTask.length < 2) {
+        if (todoTitle.length < 2) {
             setError('Ошибка валидации! Нельзя создать задачу с количеством символов меньше 2-х.')
             return true
         } else {
@@ -52,7 +43,7 @@ const AddTask: FC<AddTaskProps> = ({
     }
 
     const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-        setValueInput(event.target.value)
+        setTodoTitle(event.target.value)
     }
 
     if (error) {
@@ -68,7 +59,7 @@ const AddTask: FC<AddTaskProps> = ({
                     type="text"
                     id="input-task"
                     placeholder="Task To Be Done..."
-                    value={valueInputTask}
+                    value={todoTitle}
                     onChange={e => {
                         handleChangeInput(e)
                     }}
