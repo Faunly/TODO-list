@@ -25,6 +25,9 @@
     cursor: pointer;
 }
 
+.button.disabled {
+    background-color: #5d7fa7;
+}
 
 .error {
     border: 2px solid red;

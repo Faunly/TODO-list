@@ -67,7 +67,7 @@ const AddTask: FC<AddTaskProps> = ({ isFetching, setIsFetching, fetchTasksByCate
                     required
                     className={`${classes.input} ${error && classes.error}`}
                 />
-                <button className={classes.button} disabled={isFetching}>
+                <button className={`${classes.button} ${isFetching && classes.disabled}`} disabled={isFetching}>
                     Add
                 </button>
             </div>
