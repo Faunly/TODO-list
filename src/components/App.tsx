@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { fetchTasksByCategory } from './http.js'
+import { fetchTasksByCategory } from '../api/http.js'
 
-import classes from './App.module.css'
-import AddTask from './components/AddTask/AddTask.js'
-import CategoriesList from './components/CategoriesList/CategoriesList.js'
-import TaskList from './components/TaskList/TaskList.tsx'
-import { TasksType } from './types/Tasks.ts'
-import { CategoriesType } from './types/Categories'
+import classes from '../App.module.css'
+import AddTask from '../components/AddTask/AddTask.tsx'
+import CategoriesList from '../components/CategoriesList/CategoriesList.js'
+import TaskList from '../components/TaskList/TaskList.tsx'
+import { TasksType } from '../types/Tasks.ts'
+import { CategoriesType } from '../types/Categories.ts'
 
 const App = () => {
     const [tasks, setTasks] = useState<TasksType[]>([])

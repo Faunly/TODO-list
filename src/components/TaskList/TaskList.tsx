@@ -1,5 +1,5 @@
 import TaskItem from '../TaskItem/TaskItem.js'
-import { changeDataTask, deleteTask } from '../../http.js'
+import { changeDataTask, deleteTask } from '../../api/http.js'
 import { FC } from 'react'
 import { TasksType } from '../../types/Tasks.js'
 

@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react'
 import classes from './AddTask.module.css'
-import { addTask } from '../../http.js'
+import { addTask } from '../../api/http.js'
 
 type AddTaskProps = {
     isFetching: boolean
